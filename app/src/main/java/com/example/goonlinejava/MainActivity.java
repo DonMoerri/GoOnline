@@ -3,6 +3,7 @@ package com.example.goonlinejava;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,27 +19,21 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView email = findViewById(R.id.email);
-                TextView passwort = findViewById(R.id.passwort);
+            TextView email = findViewById(R.id.email);
+            TextView passwort = findViewById(R.id.passwort);
 
-                if(email.getText().toString().equals("") || email.getText().toString().equals("E-Mail")) {
-                    Toast.makeText(getApplicationContext(), "Ungueltige E-Mail", Toast.LENGTH_SHORT).show();
+            if(email.getText().toString().equals("") || email.getText().toString().equals("E-Mail")) {
+                Toast.makeText(getApplicationContext(), "Ungueltige E-Mail", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                if(passwort.getText().toString().equals("") || passwort.getText().toString().equals("Passwort")) {
+                    Toast.makeText(getApplicationContext(), "Ungueltiges Passwort", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if(passwort.getText().toString().equals("") || passwort.getText().toString().equals("Passwort")) {
-                        Toast.makeText(getApplicationContext(), "Ungueltiges Passwort", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        //TODO Serverrequest
-                    }
+                    Intent intent = new Intent(getApplicationContext(), DisplayDevices.class);
+                    startActivity(intent);
                 }
             }
-        });
-
-        findViewById(R.id.regiestrierenButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
     }

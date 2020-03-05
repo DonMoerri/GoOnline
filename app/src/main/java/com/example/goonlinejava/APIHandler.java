@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+
 import android.util.Base64;
 
 public final class APIHandler {
@@ -25,9 +27,9 @@ public final class APIHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-     }
+    }
 
-    public static Boolean loginReq() throws MalformedURLException {
+    public static void loginReq() throws MalformedURLException {
         URL url = new URL(baseURL + checkLoginURL);
         try {
             HttpURLConnection con = setDefaultHeaders(url);
@@ -38,12 +40,14 @@ public final class APIHandler {
         }
     }
 
-    public static Boolean getAllDevices() throws MalformedURLException{
+    public static void getAllDevices() throws MalformedURLException{
         URL url = new URL(baseURL + deviceURL);
         try {
             HttpURLConnection con = setDefaultHeaders(url);
             con.setRequestMethod("GET");
             String antwort = readResponse(con);
+
+            
         } catch(IOException e) {
             e.printStackTrace();
         }
