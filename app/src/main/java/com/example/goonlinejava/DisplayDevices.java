@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,9 +78,17 @@ public class DisplayDevices extends AppCompatActivity {
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String room = String.valueOf(roomBox.getText());
-                        String type = String.valueOf(typeBox.getText());
-
+                        final String room = String.valueOf(roomBox.getText());
+                        final String type = String.valueOf(typeBox.getText());
+                        new Thread(){
+                            public void run(){
+                                try {
+                                    APIHandler.addDevice(room, type);
+                                } catch(ProtocolException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.start();
                     }
                 })
                 .setNegativeButton("Cancel", null)
